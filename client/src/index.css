@@ -369,8 +369,32 @@ body {
   font-size: 0.85rem;
 }
 
-.user-info {
-  color: white;
-  margin-right: 1rem;
-  font-size: 0.9rem;
+.auth-toggle {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: inherit;
+}
+
+.link-btn:hover {
+  color: #0056b3;
+}
+
+.auth-hint {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #e7f3ff;
+  border-left: 4px solid #007bff;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #004085;
+  line-height: 1.6;
 }
