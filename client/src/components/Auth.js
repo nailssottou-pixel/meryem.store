@@ -84,9 +84,9 @@ function Auth() {
 
         {isLogin && (
           <div className="auth-hint">
-            <strong>Demo Credentials:</strong><br/>
+            <strong>Admin Credentials:</strong><br/>
             Email: admin@meryem.store<br/>
-            Password: admin123
+            Password: Meryem@2024#SecurePass99!
           </div>
         )}
       </div>
