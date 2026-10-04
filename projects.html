@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Ideas — Bill of Rights</title>
+    <!-- Modular CSS imports -->
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/typography.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/cards.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/nav.css">
+    <style>
+        .hero {
+            margin-bottom: 3rem;
+        }
+
+        .idea-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .idea-card {
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .idea-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent);
+        }
+
+        .idea-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .idea-icon {
+            font-size: 2.5rem;
+        }
+
+        .idea-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .idea-rank {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .idea-rank.winner {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        .metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .metric {
+            flex: 0 1 auto;
+            font-size: 0.9rem;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .metric-value {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .idea-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+
+        .idea-features {
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .idea-features li {
+            margin: 0.5rem 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+        }
+
+        .winner-section {
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(99, 102, 241, 0.1));
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .roadmap {
+            margin: 2rem 0;
+        }
+
+        .phase {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+        }
+
+        .phase-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.25rem 0;
+            color: var(--text-secondary);
+        }
+
+        .checklist li:before {
+            content: "□ ";
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .idea-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.75rem;
+            }
+
+            .winner-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Alex Chen</div>
+        <div class="nav-controls">
+            <a href="index.html" style="color: var(--text-secondary); text-decoration: none; margin-right: 1rem;">Home</a>
+            <button class="button button--icon" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                🌙
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero section--hero">
+        <h1 class="heading-xl">Current Project: Bill of Rights</h1>
+        <p class="text-secondary">A subscription tracker that auto-detects forgotten charges and drafts cancellation emails. Selected after analyzing 4 product ideas.</p>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="section section--centered">
+        <h2>📊 Idea Comparison Matrix</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Idea</th>
+                    <th>Pain Level</th>
+                    <th>Feasibility</th>
+                    <th>Revenue</th>
+                    <th>Moat</th>
+                    <th>MVP Timeline</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: linear-gradient(90deg, rgba(251, 191, 36, 0.1), transparent);">
+                    <td><strong>🏆 Bill of Rights</strong></td>
+                    <td>⭐⭐⭐⭐⭐</td>
+                    <td>⭐⭐⭐⭐</td>
+                    <td>💰💰💰💰</td>
+                    <td><strong>Strong</strong></td>
+                    <td>8–12 weeks</td>
+                </tr>
+                <tr>
+                    <td>Explain This Bill</td>
+                    <td>⭐⭐⭐⭐⭐</td>
+                    <td>⭐⭐⭐</td>
+                    <td>💰💰💰</td>
+                    <td>Medium</td>
+                    <td>12–16 weeks</td>
+                </tr>
+                <tr>
+                    <td>Ghostwriter</td>
+                    <td>⭐⭐⭐</td>
+                    <td>⭐⭐⭐⭐</td>
+                    <td>💰💰</td>
+                    <td>Weak</td>
+                    <td>4–6 weeks</td>
+                </tr>
+                <tr>
+                    <td>Leftover Chef</td>
+                    <td>⭐⭐⭐</td>
+                    <td>⭐⭐⭐⭐⭐</td>
+                    <td>💰💰</td>
+                    <td>Weak</td>
+                    <td>4–6 weeks</td>
+                </tr>
+                <tr>
+                    <td>Fix My Bike</td>
+                    <td>⭐⭐⭐⭐</td>
+                    <td>⭐⭐⭐⭐</td>
+                    <td>💰💰💰</td>
+                    <td><strong>Strong</strong></td>
+                    <td>6–10 weeks</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- All Ideas -->
+    <section class="section">
+        <h2>💡 All Idea Candidates</h2>
+        <div class="idea-grid">
+            <!-- Bill of Rights -->
+            <div class="idea-card">
+                <div class="idea-rank winner">🏆 Selected MVP</div>
+                <div class="idea-header">
+                    <div class="idea-icon">💳</div>
+                    <h3 class="idea-title">Bill of Rights</h3>
+                </div>
+                <p class="idea-description">
+                    Auto-detect forgotten subscriptions, track spending, draft cancellation emails. People lose $240–$420/year to subscription friction.
+                </p>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-label">Pain:</span>
+                        <span class="metric-value">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Moat:</span>
+                        <span class="metric-value">💪 Strong</span>
+                    </div>
+                </div>
+                <div class="idea-features">
+                    <strong>MVP:</strong>
+                    <ul>
+                        <li>Connect bank (Plaid API)</li>
+                        <li>Email parsing for recurring charges</li>
+                        <li>LLM-generated cancellation emails</li>
+                        <li>Dashboard with savings potential</li>
+                    </ul>
+                </div>
+                <button class="button button--primary" onclick="scrollToSection('bill-of-rights')">View Roadmap →</button>
+            </div>
+
+            <!-- Explain This Bill -->
+            <div class="idea-card">
+                <div class="idea-rank">2️⃣ Runner-up</div>
+                <div class="idea-header">
+                    <div class="idea-icon">🏥</div>
+                    <h3 class="idea-title">Explain This Bill</h3>
+                </div>
+                <p class="idea-description">
+                    Photograph any medical/insurance bill, get plain-English breakdown of charges and auto-draft dispute letters.
+                </p>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-label">Pain:</span>
+                        <span class="metric-value">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Moat:</span>
+                        <span class="metric-value">📊 Medium</span>
+                    </div>
+                </div>
+                <div class="idea-features">
+                    <strong>Why ranked 2nd:</strong>
+                    <ul>
+                        <li>Real pain (medical debt crisis)</li>
+                        <li>Harder technical lift (OCR)</li>
+                        <li>Regulatory risk (legal advice)</li>
+                        <li>Smaller addressable market</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Ghostwriter -->
+            <div class="idea-card">
+                <div class="idea-rank">3️⃣ Technically Easy</div>
+                <div class="idea-header">
+                    <div class="idea-icon">👻</div>
+                    <h3 class="idea-title">Ghostwriter</h3>
+                </div>
+                <p class="idea-description">
+                    Watch group chats, auto-summarize debates/decisions, track action items and who's responsible.
+                </p>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-label">Pain:</span>
+                        <span class="metric-value">⭐⭐⭐</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Moat:</span>
+                        <span class="metric-value">❌ Weak</span>
+                    </div>
+                </div>
+                <div class="idea-features">
+                    <strong>Why not selected:</strong>
+                    <ul>
+                        <li>Easy to copy (Slack/Discord could build in 1 sprint)</li>
+                        <li>Lower revenue ceiling</li>
+                        <li>B2C only (no B2B leverage)</li>
+                        <li>Weak defensibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Leftover Chef -->
+            <div class="idea-card">
+                <div class="idea-rank">4️⃣ Crowded Market</div>
+                <div class="idea-header">
+                    <div class="idea-icon">🍳</div>
+                    <h3 class="idea-title">Leftover Chef</h3>
+                </div>
+                <p class="idea-description">
+                    Match pantry ingredients to recipes, reduce food waste, get personalized meal suggestions.
+                </p>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-label">Pain:</span>
+                        <span class="metric-value">⭐⭐⭐</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Moat:</span>
+                        <span class="metric-value">❌ None</span>
+                    </div>
+                </div>
+                <div class="idea-features">
+                    <strong>Why not selected:</strong>
+                    <ul>
+                        <li>Thousands of competitors (Yummly, Mealime, AllRecipes)</li>
+                        <li>No unique defensibility</li>
+                        <li>Hard to differentiate</li>
+                        <li>Lower revenue potential</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Fix My Bike -->
+            <div class="idea-card">
+                <div class="idea-rank">5️⃣ High Potential</div>
+                <div class="idea-header">
+                    <div class="idea-icon">🔧</div>
+                    <h3 class="idea-title">Fix My Bike</h3>
+                </div>
+                <p class="idea-description">
+                    Photo/video diagnosis of bike problems, safety checks, step-by-step repairs, maintenance tracking, and local mechanic booking.
+                </p>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-label">Pain:</span>
+                        <span class="metric-value">⭐⭐⭐⭐</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Moat:</span>
+                        <span class="metric-value">💪 Strong</span>
+                    </div>
+                </div>
+                <div class="idea-features">
+                    <strong>MVP:</strong>
+                    <ul>
+                        <li>Photo/text diagnosis with confidence scoring</li>
+                        <li>Bike profile (type, brand, components)</li>
+                        <li>Step-by-step repair guides + images</li>
+                        <li>Shop directory + referral booking</li>
+                    </ul>
+                </div>
+                <button class="button button--primary" onclick="scrollToSection('fix-my-bike')">View Roadmap →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fix My Bike Section -->
+    <section class="winner-section" id="fix-my-bike">
+        <h2>🔧 Fix My Bike — High-Potential MVP</h2>
+        
+        <h3 style="margin-top: 2rem;">Why This Concept Works</h3>
+        <ol style="line-height: 1.8;">
+            <li>
+                <strong>Specific Pain Point:</strong> Cyclists face repeated diagnosis paralysis — bike shops are expensive, slow, and beginner-unfriendly.
+            </li>
+            <li>
+                <strong>Recurring Revenue Potential:</strong> Free diagnosis → Premium video guides + maintenance tracking + mechanic chat ($5–8/mo).
+            </li>
+            <li>
+                <strong>Built-In Moat:</strong> Content library (repair guides), user bike profiles, community trust. Hard to disrupt once you own "bike health."
+            </li>
+            <li>
+                <strong>Multiple Revenue Streams:</strong> Freemium SaaS, affiliate commissions (parts links), shop partnerships (referral fees).
+            </li>
+            <li>
+                <strong>Technical Feasibility:</strong> Computer vision for photo diagnosis, LLM-generated content, PostgreSQL for profiles. No bleeding-edge tech required.
+            </li>
+        </ol>
+
+        <h3>Tech Stack</h3>
+        <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; line-height: 1.8;">
+            <p><strong>Frontend:</strong> React 18 + TypeScript, Tailwind CSS, React Router, Zustand (state management)</p>
+            <p><strong>Backend:</strong> Node.js + Express, PostgreSQL, Redis (caching + job queue)</p>
+            <p><strong>AI/Vision:</strong> OpenAI Vision API (photo diagnosis), Claude (repair guide generation)</p>
+            <p><strong>Cloud:</strong> AWS (S3 for images, Lambda for async jobs) or Firebase (faster MVP)</p>
+            <p><strong>Auth:</strong> Auth0 or Firebase Auth (OAuth for social login)</p>
+            <p><strong>Payments:</strong> Stripe (subscriptions + affiliate tracking)</p>
+            <p><strong>Search:</strong> Elasticsearch or Typesense (repair guides + shop directory)</p>
+        </div>
+
+        <h3>MVP Features (Phase 1)</h3>
+        <ul style="line-height: 1.8;">
+            <li><strong>Diagnosis Engine:</strong> Upload photo/video → OpenAI Vision API → structured diagnosis with confidence score</li>
+            <li><strong>Symptom Picker:</strong> Guided form for sound/feel/visual symptoms → narrow diagnosis</li>
+            <li><strong>Bike Profile:</strong> Store bike type (road, MTB, hybrid), brand, groupset, year. Save multiple bikes.</li>
+            <li><strong>Repair Guides:</strong> Pre-written + AI-generated step-by-step instructions with image references. Text only for MVP.</li>
+            <li><strong>Safety Flag:</strong> Dangerous issues (frame cracks, brake failure) → "Stop — see a mechanic" banner</li>
+            <li><strong>Maintenance Log:</strong> Track repairs, parts replacements. Simple reminder system (time-based, not mileage yet)</li>
+            <li><strong>Shop Directory:</strong> Basic map + shop search. No booking integration yet (Phase 2)</li>
+        </ul>
+
+        <!-- Roadmap -->
+        <div class="roadmap">
+            <h3>10-Week Development Roadmap</h3>
+
+            <div class="phase">
+                <div class="phase-title">Phase 1: Diagnosis MVP (Weeks 1–3)</div>
+                <div class="phase-description">Photo upload, AI diagnosis, bike profiles</div>
+                <ul class="checklist">
+                    <li>Set up React + TypeScript frontend scaffold</li>
+                    <li>Express backend + PostgreSQL schema (users, bikes, diagnoses)</li>
+                    <li>Auth0 OAuth integration (login/signup)</li>
+                    <li>Photo upload UI + S3 integration</li>
+                    <li>OpenAI Vision API integration for photo diagnosis</li>
+                    <li>Diagnosis result card + confidence scoring UI</li>
+                    <li>Bike profile creation + management UI</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <div class="phase-title">Phase 2: Content & Guides (Weeks 4–6)</div>
+                <div class="phase-description">Repair guides, symptom picker, LLM generation</div>
+                <ul class="checklist">
+                    <li>Build content CMS (repair guide templates)</li>
+                    <li>Seed 30–50 common bike repairs (manual + LLM-drafted)</li>
+                    <li>Symptom picker form (sound, feel, visual dropdowns)</li>
+                    <li>Claude API integration for guide personalization by bike type</li>
+                    <li>Tool + parts checklist generation</li>
+                    <li>Safety flag logic (identify dangerous conditions)</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <div class="phase-title">Phase 3: Features & Monetization (Weeks 7–10)</div>
+                <div class="phase-description">Maintenance tracking, shop directory, Stripe billing</div>
+                <ul class="checklist">
+                    <li>Maintenance log UI (repair history, parts tracking)</li>
+                    <li>Reminder system (simple time-based notifications)</li>
+                    <li>Shop directory (search + map, manual seeding)</li>
+                    <li>Stripe subscription setup (free tier + Pro $7/mo)</li>
+                    <li>Premium feature gates (video guides, mechanic chat access, priority support)</li>
+                    <li>Landing page + SEO setup</li>
+                    <li>Production deployment (AWS or Firebase)</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>MVP Success Metrics</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Launch Target</th>
+                    <th>6-Week Target</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sign-ups</td>
+                    <td>50–100</td>
+                    <td>500–1000</td>
+                </tr>
+                <tr>
+                    <td>Diagnoses Performed</td>
+                    <td>100–200</td>
+                    <td>1500–2500</td>
+                </tr>
+                <tr>
+                    <td>Free → Pro Conversion</td>
+                    <td>2–3%</td>
+                    <td>5–8%</td>
+                </tr>
+                <tr>
+                    <td>Avg Repair Guides Read/User</td>
+                    <td>1–2</td>
+                    <td>3–4</td>
+                </tr>
+                <tr>
+                    <td>Monthly Revenue</td>
+                    <td>$50–150</td>
+                    <td>$300–700</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Revenue Model (Post-MVP)</h3>
+        <ul style="line-height: 1.8;">
+            <li><strong>Freemium SaaS:</strong> Free diagnosis + text guides. Pro ($7/mo) for video walkthroughs, mechanic chat, ad-free.</li>
+            <li><strong>Affiliate Revenue:</strong> Links to parts (chains, brake pads, cables). Estimate 1–3% click-through, $5–20 per conversion.</li>
+            <li><strong>Shop Partnerships:</strong> Local bike shops pay per qualified referral ($10–25 per booking). Refer users, track completion.</li>
+            <li><strong>B2B Content Licensing:</strong> Repair content sold to bike manufacturers, media, insurance companies (future).</li>
+        </ul>
+
+        <h3>Risks & Mitigations</h3>
+        <ul style="line-height: 1.8;">
+            <li>
+                <strong>Vision API Accuracy:</strong> Photo diagnosis may misidentify issues, leading to incorrect repairs.
+                <br><em>Mitigation:</em> Always show confidence score, provide multiple hypotheses, safety warnings, and escalation to mechanic chat for low-confidence cases.
+            </li>
+            <li>
+                <strong>Content at Scale:</strong> Creating 500+ repair guides is massive lift.
+                <br><em>Mitigation:</em> LLM-generate base content from templates, have community review/improve, prioritize top 50 repairs first.
+            </li>
+            <li>
+                <strong>Shop Directory Accuracy:</strong> Bike shop data (hours, pricing) changes frequently.
+                <br><em>Mitigation:</em> Use Google Maps API for authoritative source, user-submitted corrections, import from BikeLingo.
+            </li>
+            <li>
+                <strong>User Liability:</strong> User follows bad repair guide, bike breaks.
+                <br><em>Mitigation:</em> Clear disclaimer in ToS, safety flags for critical repairs, liability insurance.
+            </li>
+        </ul>
+
+        <h3>Phase 2 Features (Post-Launch Roadmap)</h3>
+        <ul style="line-height: 1.8;">
+            <li>Video walkthroughs for top 20 repairs (YouTube + in-app)</li>
+            <li>Live "Ask a Mechanic" chat (outsourced or partnered mechanics)</li>
+            <li>Community forums (user tips, repair verification)</li>
+            <li>Mileage-based maintenance reminders (Strava integration)</li>
+            <li>Shop booking system (real-time availability + payments)</li>
+            <li>Mobile apps (React Native or Flutter)</li>
+        </ul>
+    </section>
+
+    <!-- Winner Section -->
+    <section class="winner-section" id="bill-of-rights">
+        <h2>🏆 Bill of Rights — The Selected MVP</h2>
+        
+        <h3 style="margin-top: 2rem;">Why This Wins</h3>
+        <ol style="line-height: 1.8;">
+            <li>
+                <strong>Universal Pain:</strong> Average US household loses $240–$420/year to forgotten subscriptions.
+            </li>
+            <li>
+                <strong>Built-In Moat:</strong> Cancellation is intentionally tedious by design. Your edge: AI-generated cancellation emails, scripts, phone walkthroughs.
+            </li>
+            <li>
+                <strong>Multiple Revenue Streams:</strong> Freemium (scan), Pro ($9.99/mo), B2B integrations ($500+/mo), affiliate commissions.
+            </li>
+            <li>
+                <strong>Technical Simplicity:</strong> Plaid API + LLM prompts + Email integration. No blockchain, no ML training required.
+            </li>
+            <li>
+                <strong>Time to Market:</strong> MVP in 8–12 weeks, revenue in 3–4 months.
+            </li>
+        </ol>
+
+        <h3>MVP Features (Phase 1)</h3>
+        <ul style="line-height: 1.8;">
+            <li><strong>Connect Bank:</strong> Plaid OAuth → scan recurring charges</li>
+            <li><strong>Email Integration:</strong> Gmail/Outlook → parse recurring receipts</li>
+            <li><strong>Smart Categorization:</strong> Spotify, Netflix, Adobe, etc.</li>
+            <li><strong>Dashboard:</strong> List all subscriptions + monthly cost + savings potential</li>
+            <li><strong>Cancellation Engine:</strong> LLM generates personalized cancellation email</li>
+            <li><strong>Send & Track:</strong> Email delivery via Sendgrid, track success</li>
+        </ul>
+
+        <!-- Roadmap -->
+        <div class="roadmap">
+            <h3>12-Week Development Roadmap</h3>
+
+            <div class="phase">
+                <div class="phase-title">Phase 1: Data Layer (Weeks 1–4)</div>
+                <div class="phase-description">Bank + Email integration, subscription detection</div>
+                <ul class="checklist">
+                    <li>Set up Plaid OAuth flow</li>
+                    <li>Parse transactions for recurring patterns</li>
+                    <li>Auto-categorize by merchant</li>
+                    <li>Gmail/Outlook OAuth integration</li>
+                    <li>Email parsing for renewal receipts</li>
+                    <li>Cross-reference bank + email data</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <div class="phase-title">Phase 2: AI Cancellation Engine (Weeks 5–8)</div>
+                <div class="phase-description">LLM prompts, email templates, send mechanism</div>
+                <ul class="checklist">
+                    <li>Prompt engineering for cancellation emails</li>
+                    <li>Prompt engineering for phone scripts</li>
+                    <li>Build template library (top 20 services)</li>
+                    <li>Sendgrid API integration</li>
+                    <li>Fallback templates for unknown services</li>
+                    <li>Email success tracking</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <div class="phase-title">Phase 3: Product & Launch (Weeks 9–12)</div>
+                <div class="phase-description">Dashboard, monetization, public launch</div>
+                <ul class="checklist">
+                    <li>Build subscription dashboard</li>
+                    <li>Calculate total savings potential</li>
+                    <li>Add cancellation status tracking</li>
+                    <li>Implement Stripe billing</li>
+                    <li>Create landing page + SEO</li>
+                    <li>Deploy MVP to production</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Success Metrics -->
+        <h3>Post-Launch Targets</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>3-Month Target</th>
+                    <th>6-Month Target</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monthly Users</td>
+                    <td>500</td>
+                    <td>5,000</td>
+                </tr>
+                <tr>
+                    <td>Pro Conversion Rate</td>
+                    <td>5%</td>
+                    <td>15%</td>
+                </tr>
+                <tr>
+                    <td>Avg Monthly Revenue</td>
+                    <td>$350</td>
+                    <td>$3,000</td>
+                </tr>
+                <tr>
+                    <td>Subscriptions Detected (per user)</td>
+                    <td>6</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>Cancellation Success Rate</td>
+                    <td>60%</td>
+                    <td>80%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Risk Mitigation -->
+        <h3>Risk Management</h3>
+        <ul style="line-height: 1.8;">
+            <li>
+                <strong>API Brittleness:</strong> Cancellation pages change → scripts break.
+                <br><em>Mitigation:</em> Crowdsource updates, AI adapts on failure, multiple fallback paths.
+            </li>
+            <li>
+                <strong>Legal Gray Zone:</strong> Sending emails on behalf of user.
+                <br><em>Mitigation:</em> Clear ToS, user must explicitly authorize each email, preserve audit trail.
+            </li>
+            <li>
+                <strong>Service Updates:</strong> Plaid/email API rates/features change.
+                <br><em>Mitigation:</em> Use multiple providers, negotiate SLAs early, monitor competitor APIs.
+            </li>
+        </ul>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--centered">
+        <h2>🚀 Next Steps</h2>
+        <p>Development begins immediately. Weekly progress updates tracked here.</p>
+        <div class="cta-group">
+            <button class="button button--primary">View Development Tracker →</button>
+            <button class="button button--icon">📋 Read Full Analysis</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid var(--border); margin-top: 4rem;">
+        <p>Built by Alex Chen | Currently developing Bill of Rights MVP</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/themeManager.js"></script>
+    <script src="js/cardManager.js"></script>
+    <script>
+        // Initialize theme toggle
+        ThemeManager.init('themeToggle');
+
+        // Scroll helper
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

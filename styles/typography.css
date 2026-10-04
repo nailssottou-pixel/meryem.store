@@ -1,0 +1,38 @@
+/* Typography - reusable text styles */
+.heading-xl {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.heading-lg {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.text-secondary {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.5;
+}
+
+.text-muted {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .heading-xl {
+        font-size: 1.875rem;
+    }
+
+    .text-secondary {
+        font-size: 1rem;
+    }
+}

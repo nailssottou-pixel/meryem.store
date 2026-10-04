@@ -1,0 +1,28 @@
+/* CSS Variables for theming and spacing */
+:root {
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --border: #e5e7eb;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --card-shadow-hover: 0 20px 25px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+    --transition-speed-fast: 0.2s;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --accent: #818cf8;
+        --accent-hover: #a5b4fc;
+        --bg-primary: #111827;
+        --bg-secondary: #1f2937;
+        --text-primary: #f3f4f6;
+        --text-secondary: #d1d5db;
+        --border: #374151;
+        --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        --card-shadow-hover: 0 20px 25px rgba(0, 0, 0, 0.5);
+    }
+}

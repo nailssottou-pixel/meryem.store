@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Chen — Full Stack Developer</title>
+    <!-- Modular CSS imports -->
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/typography.css">
+    <link rel="stylesheet" href="styles/buttons.css">
+    <link rel="stylesheet" href="styles/cards.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/nav.css">
+    <style>
+        /* Specific page layout combinations */
+        .tagline {
+            max-width: 600px;
+            margin: 0 0 2rem 0;
+        }
+
+        .avatar {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .projects {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Alex Chen</div>
+        <div class="nav-controls">
+            <a href="projects.html" style="color: var(--text-secondary); text-decoration: none; margin-right: 1rem; font-weight: 500;">Current Work</a>
+            <button class="button button--icon" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                🌙
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero section--hero">
+        <div class="avatar animate-float">💻</div>
+        <div class="tagline">
+            <h1 class="heading-xl">Full Stack Developer</h1>
+            <p class="text-secondary">Crafting elegant solutions for complex problems.<br>TypeScript, React, and cloud-native architecture.</p>
+        </div>
+        <button class="button button--primary">Get In Touch</button>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects section">
+        <div class="grid">
+            <div class="card">
+                <div class="card__icon">⚡</div>
+                <div class="card__title">Velocity API</div>
+                <div class="card__description">High-performance REST API with rate limiting, built for processing millions of requests per day.</div>
+            </div>
+
+            <div class="card">
+                <div class="card__icon">🎨</div>
+                <div class="card__title">Design System</div>
+                <div class="card__description">Comprehensive component library with accessibility-first approach, serving 50+ web applications.</div>
+            </div>
+
+            <div class="card">
+                <div class="card__icon">📊</div>
+                <div class="card__title">Analytics Dashboard</div>
+                <div class="card__description">Real-time data visualization platform with WebSocket streaming and advanced filtering capabilities.</div>
+            </div>
+
+            <div class="card">
+                <div class="card__icon">🔐</div>
+                <div class="card__title">SecureVault</div>
+                <div class="card__description">End-to-end encrypted file storage service with zero-knowledge architecture and seamless collaboration.</div>
+            </div>
+        </div>
+    </section>
+
+    <script type="module">
+        import { ThemeManager } from './js/themeManager.js';
+        import { CardManager } from './js/cardManager.js';
+
+        // Initialize theme management
+        ThemeManager.init('themeToggle');
+
+        // Initialize card interactions
+        CardManager.initCards('.card');
+    </script>
+</body>
+</html>

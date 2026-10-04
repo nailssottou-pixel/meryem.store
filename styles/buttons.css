@@ -1,0 +1,45 @@
+/* Reusable button styles - eliminates duplication between .cta-button and .theme-toggle */
+.button {
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color var(--transition-speed) ease, 
+                border-color var(--transition-speed) ease,
+                transform var(--transition-speed-fast) ease;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+}
+
+/* Primary CTA button */
+.button--primary {
+    padding: 0.75rem 1.75rem;
+    background-color: var(--accent);
+    color: white;
+    text-decoration: none;
+}
+
+.button--primary:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Icon button variant */
+.button--icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-size: 1.2rem;
+}
+
+.button--icon:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--accent);
+}
